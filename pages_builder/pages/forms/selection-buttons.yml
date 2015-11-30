@@ -1,0 +1,88 @@
+pageTitle: Selection buttons
+assetPath: ../govuk_template/assets/
+grid: column-two-thirds
+bodyEnd: >
+  <script type="text/javascript" src="../public/javascripts/govuk_frontend_toolkit/vendor/polyfills/bind.js"></script>
+  <script type="text/javascript" src="../public/javascripts/govuk_frontend_toolkit/govuk/selection-buttons.js"></script>
+examples:
+  -
+    type: radio
+    name: minimumContractPeriod
+    question: Radio buttons
+    options:
+      -
+        label: Hour
+        value: Heure
+      -
+        label: Day
+      -
+        label : Month
+      -
+        label : Year
+  -
+    type: radio
+    name: serviceStatus
+    question: Inline radio buttons
+    inline: True
+    value: 'Public'
+    options:
+      -
+        label: Public
+      -
+        label: Private
+  -
+    type: checkbox
+    name: categories
+    question: Choose a category
+    value:
+      - Accounting and finance
+      - Collaboration
+    options:
+      -
+        label: Accounting and finance
+      -
+        label: Business intelligence and analytics
+      -
+        label: Collaboration
+  -
+    type: boolean
+    question: Offline working supported
+    name: offlineWorking
+    value: True
+  -
+    type: radio
+    question: Checkbox with hint and description
+    hint: Hint giving some information about how to answer the question.
+    name: lot
+    options:
+      -
+        label: Infrastructure as a Service
+        description: >
+          Infrastructure is the hardware that makes software work. It's the networks, hosting facilities
+          and servers that platforms and software depend on. IaaS is infrastructure you can order and run
+          entirely over the internet, without having to pay for your own hardware.
+  -
+    type: checkbox
+    question: Is your service assured by
+    hint: The hint for this question only makes sense when it's underneath the options.
+    hint_underneath: True
+    name: lot
+    options:
+      -
+        label: service provider assertion?
+      -
+        label: independent validation of assertion?
+      -
+        label: independent testing of implementation?
+  -
+    type: checkbox
+    name: vegetables
+    question: Checkboxes with an error
+    error: Answer required
+    options:
+      -
+        label: Carrot
+      -
+        label: Onion
+      -
+        label: Collaboration

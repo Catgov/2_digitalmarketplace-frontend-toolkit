@@ -1,0 +1,66 @@
+{% if error %}
+  <div class="validation-wrapper">
+{% endif %}
+  <div class="question" id="{{ name }}">
+    <label for="input-{{ name }}">
+      <span class="question-heading{% if hint is defined %}-with-hint{% endif %}">
+        {% if question_number %}
+          <span class="question-number">
+            {{ question_number }}
+          </span>
+        {% endif %}
+        {{ question }}
+        {% if unit_in_full %}
+          <span class="text-box-unit-qualifier">(in {{ unit_in_full }})</span>
+        {% endif %}
+      </span>
+      {% if hint %}
+        <span class="hint">
+          {{ hint }}
+        </span>
+      {% endif %}
+      {% if error %}
+        <span class="validation-message" id="error-{{ name }}">
+          {{ error }}
+        </span>
+      {% endif %}
+    </label>
+    {% if large %}
+      {% if max_length_in_words is defined %}
+        <div class="word-count">
+          <textarea
+            class="text-box text-box-large{% if error %}-with-error{% endif %}"
+            name="{{ name }}"
+            id="input-{{ name }}"
+            data-max-length-in-words="{{ max_length_in_words }}"
+            {% if error %}aria-describedby="error-{{ name }}"{% endif %}
+          >
+          {%- if value != None -%}
+            {{ value }}
+          {%- endif -%}
+          </textarea>
+        </div>
+      {% else %}
+        <textarea class="text-box text-box-large" name="{{ name }}" id="input-{{ name }}">
+        {%- if value != None -%}
+        	{{ value }}
+        {%- endif -%}
+	</textarea>
+      {% endif %}
+    {% else %}
+      {% if unit_position == "before" %}
+        <label for="input-{{ name }}" class="text-box-unit">
+          {{ unit }}
+        </label>
+      {% endif %}
+      <input type="text" name="{{ name }}" id="input-{{ name }}" class="text-box{% if unit %}-with-unit-{{ unit_position }}{% endif %}{% if error %}-with-error{% endif %}" value="{% if value !=  None %}{{ value }}{% endif %}" />
+      {% if unit_position == "after" %}
+        <label for="input-{{ name }}" class="text-box-unit">
+          {{ unit }}
+        </label>
+      {% endif %}
+    {% endif %}
+  </div>
+{% if error %}
+  </div>
+{% endif %}

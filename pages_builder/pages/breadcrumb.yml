@@ -1,0 +1,16 @@
+pageTitle: Breadcrumb
+assetPath: govuk_template/assets/
+examples:
+  -
+    items:
+      -
+        label: Home
+        link: ./
+      -
+        label: Item 1
+        link: '#'
+      -
+        label: Item 2
+        link: '#'
+      -
+        label: Item 3

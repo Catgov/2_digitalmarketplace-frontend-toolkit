@@ -1,0 +1,9 @@
+{{ '
+{%
+  with' }}
+{%- for key, value in parameters.iteritems() %}
+  {{ key }} = {{ value }}{% if not loop.last %},{% endif %}
+{%- endfor %}
+{{ '%}' }}
+  {{ '{% include "' }}{{ file }}{{ '" %}' }}
+{{ '{% endwith %}' }}

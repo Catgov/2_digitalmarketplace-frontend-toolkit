@@ -1,0 +1,216 @@
+{% if PAGES_BUILDER %}
+  {% import 'summary-content.html' as content %}
+{% else %}
+  {% import 'toolkit/summary-content.html' as content %}
+{% endif %}
+
+{% macro heading(heading, index=None) -%}
+<h2 class="summary-item-heading">
+    {% if index %}
+      <span class="summary-item-heading-number">{{ index }}.</span>
+    {% endif %}
+    {{ heading }}
+</h2>
+{%- endmacro %}
+
+{% macro top_link(label, top_link) -%}
+<p class="summary-item-top-level-action">
+  <a href="{{ top_link }}" class="summary-change-link">{{ label }}</a>
+</p>
+{%- endmacro %}
+
+{% macro mapping_table(caption='', field_headings='', field_headings_visible=True) -%}
+  <table class="summary-item-body">
+    <caption class="visuallyhidden">
+      {{ caption }}
+    </caption>
+    <thead class="summary-item-field-headings{% if field_headings_visible %}-visible{% endif %}">
+      <tr>
+        {% for field_heading in field_headings %}
+          <th scope="col" class="summary-item-field-heading{% if loop.first %}-first{% endif %}">
+            {% if field_headings_visible %}
+              {{ field_heading }}
+            {% else %}
+              <span class="visuallyhidden">{{ field_heading }}</span>
+            {% endif %}
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {{ caller() }}
+    </tbody>
+  </table>
+{%- endmacro %}
+
+{% macro list_table(items, caption='', empty_message='', field_headings='', field_headings_visible=True) -%}
+{% if items %}
+  {% set parent_caller = caller %}
+  {% call mapping_table(caption, field_headings, field_headings_visible) %}
+    {% for item in items %}
+      {{ parent_caller(item) }}
+    {% endfor %}
+  {% endcall %}
+{% else %}
+  <p class="summary-item-no-content">
+    {{ empty_message }}
+  </p>
+{% endif %}
+{%- endmacro %}
+
+{% set table = list_table %}
+
+
+{% macro hidden_field_heading(name) -%}
+  <span class="hidden">{{ name }}</span>
+{%- endmacro %}
+
+
+{% macro row(complete=True) -%}
+  <tr class="summary-item-row{% if not complete %}-incomplete{% endif %}">
+    {{ caller() }}
+  </tr>
+{%- endmacro %}
+
+
+{# GENERIC FIELD #}
+{# ============= #}
+
+{% macro field(first=False, wide=False, action=False) -%}
+  <td class="summary-item-field{% if first %}-first{% endif %}{% if first and wide %}-wider{% endif %}{% if action %}-with-action{% endif %}">
+    <span>{{ caller() }}</span>
+  </td>
+{%- endmacro %}
+
+
+{# SPECIAL FIELD TYPES #}
+{# =================== #}
+
+{% macro service_link(service_name, link, wide=True) -%}
+  {% call field(first=True, wide=wide) %}
+    <a href="{{ link }}">{{ service_name }}</a>
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro edit_link(label, link, hidden_text='') -%}
+  {% call field(action=True) %}
+    <a href="{{ link }}">{{ label }}{% if hidden_text %}<span class="visuallyhidden"> {{ hidden_text }}</span>{% endif %}</a>
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro remove_link(label, link, hidden_text='') -%}
+  {% call field(action=True) %}
+    <a href="{{ link }}" class="summary-item-remove-link">{{ label }}{% if hidden_text %}<span class="visuallyhidden"> {{ hidden_text }}</span>{% endif %}</a>
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro field_name(text, wide=False) -%}
+  {% call field(first=True, wide=wide) %}
+    {{ text }}
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro button(text, action, csrf_token_value='') -%}
+  {% call field(action=True) %}
+    <form method="post" action="{{ action }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token_value or csrf_token() }}" />
+      <button type="submit" class="button-secondary">{{ text }}</button>
+    </form>
+  {% endcall %}
+{%- endmacro %}
+
+
+{# FIELDS for PRESENTING SERVICE DATA #}
+{# ================================== #}
+
+{% macro text(text, assurance=None) -%}
+  {% call field() %}
+    {{ content.text_content(text, assurance) }}
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro list(items, assurance=None) -%}
+  {% if items | length == 0 %}
+    {{ text('') }}
+  {% elif items | length == 1 %}
+    {{ text(items[0], assurance) }}
+  {% elif items | length > 1 %}
+    {% call field() %}
+      {{ content.list_items_content(items, assurance) }}
+    {% endcall %}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro textbox(value='', assurance=None) -%}
+  {{ text(value, assurance) }}
+{%- endmacro %}
+
+
+{% macro upload(value, assurance=None) -%}
+  {% call field() %}
+    {{ content.upload_content(value, assurance) }}
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro service_id(value='', assurance=None) -%}
+  {% call field() %}
+    {{ content.service_id_content(value, assurance) }}
+  {% endcall %}
+{%- endmacro %}
+
+
+{% macro checkboxes(value='', assurance=None) -%}
+  {{ list(value, assurance) }}
+{%- endmacro %}
+
+
+{% macro radios(value='', assurance=None) -%}
+  {% if value is string %}
+    {{ text(value, assurance) }}
+  {% else %}
+    {{ list(value, assurance) }}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro boolean(value='', assurance=None) -%}
+  {% if value == True %}
+    {{ text("Yes", assurance) }}
+  {% elif value == False %}
+    {{ text("No", assurance) }}
+  {% else %}
+    {{ text(value, assurance) }}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro textbox_large(value='', assurance=None) -%}
+  {{ text(value, assurance) }}
+{%- endmacro %}
+
+
+{% macro pricing(value='', assurance=None) -%}
+  {{ text(value, assurance) }}
+{%- endmacro %}
+
+
+{% macro percentage(value='', assurance=None) -%}
+  {{ text(value|string + '%', assurance) }}
+{%- endmacro %}
+
+
+{% macro multiquestion(value, assurance) -%}
+  {% call field() %}
+    {% for question in value %}
+      {% set macro = '{}_content'.format(question.type) %}
+      <div class="multiquestion-answer">{{ content[macro](question.value, question.assurance) }}</div>
+    {% endfor %}
+  {% endcall %}
+{%- endmacro %}

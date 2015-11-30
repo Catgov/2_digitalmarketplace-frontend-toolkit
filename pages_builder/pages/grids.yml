@@ -1,0 +1,36 @@
+pageTitle: Grids
+assetPath: ../govuk_template/assets/
+examples:
+  -
+    title: One column, full width
+    items:
+      -
+        type: column-one-whole
+        contents: Contents
+  -
+    title: Two columns, 1/3 and 2/3
+    items:
+      -
+        type: column-one-third
+        contents: Contents
+      -
+        type: column-two-thirds
+        contents: Contents
+  -
+    title: Two columns, 1/2 and 1/2
+    items:
+      -
+        type: column-one-half
+        contents: Contents
+      -
+        type: column-one-half
+        contents: Contents
+  -
+    title: Two columns, 2/3 and 1/3
+    items:
+      -
+        type: column-two-thirds
+        contents: Contents
+      -
+        type: column-one-third
+        contents: Contents

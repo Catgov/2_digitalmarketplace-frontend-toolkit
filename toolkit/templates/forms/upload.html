@@ -1,0 +1,45 @@
+{% if error %}
+<div class="validation-wrapper">
+{% endif %}
+  <div class="question" id="{{ name }}">
+    <label for="input-{{ name }}">
+      <span class="question-heading{% if hint is defined %}-with-hint{% endif %}">
+        {% if question_number %}
+          <span class="question-number">
+            {{ question_number }}
+          </span>
+        {% endif %}
+        {{ question }}
+      </span>
+      {% if hint %}
+        <span class="hint">
+          {{ hint }}
+        </span>
+      {% endif %}
+      {% if error %}
+        <span class="validation-message" id="error-{{ name }}">
+          {{ error }}
+        </span>
+      {% endif %}
+    </label>
+    {% if value %}
+      <p class="file-upload-existing-value">
+        {% if link %}
+          <a href="{{ link }}" class='document-link-with-narrow-icon'>
+        {% else %}
+          <span class='document-link-with-narrow-icon'>
+        {% endif %}
+            <span class='document-icon-blank'></span>
+            {{ value }}
+        {% if link %}
+          </a>
+        {% else %}
+          </span>
+        {% endif %}
+      </p>
+    {% endif %}
+    <input type="file" name="{{ name }}" id="input-{{ name }}" class="file-upload-input" {% if error %}aria-describedby="error-{{ name }}"{% endif %} />
+  </div>
+{% if error %}
+</div>
+{% endif %}

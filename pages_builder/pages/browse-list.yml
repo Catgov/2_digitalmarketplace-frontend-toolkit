@@ -1,0 +1,67 @@
+pageTitle: Browse list
+assetPath: govuk_template/assets/
+examples:
+  -
+    items:
+      -
+        title: Find cloud technology and support
+        link: 'https://www.gov.uk'
+        body: eg web hosting or IT health checks
+        subtext: 'Procurement framework: <a href="#">G-Cloud</a>'
+      -
+        title: Find specialists to work on digital projects to work on digital projects to work on digital projects to work on digital projects
+        link: '#nope'
+        subtext: 'Procurement framework: <a href="#">Digital Services</a>'
+      -
+        title: Software as a Service
+        link: '#nope'
+        body: 'Find applications or services that are run over the internet or in the cloud'
+        subtext: eg accounting, email
+  -
+    items:
+      -
+        title: Apply to G-Cloud 10
+        link: '#nope'
+        body: G-Cloud 10 is open for applications until 1 October 2019
+  -
+    items:
+      -
+        title: Apply to G-Cloud 11
+        link: '#nope'
+        statuses:
+          -
+            type: quiet
+            title: You haven’t started this yet
+      -
+        title: Apply to provide teams for digital outcomes
+        link: '#nope'
+        body: Provide teams to build and support digital outcomes.
+        statuses:
+          -
+            type: happy
+            title: You are submitting
+            list:
+              - digital outcomes
+              - digital specialists
+          -
+            type: quiet
+            title: You are not submitting
+            list:
+              - user research studios
+              - participant recruitment
+      -
+        title: Apply to provide digital specialists
+        link: '#nope'
+        body: Provide individual specialists to work on digital services, programmes or projects.
+        statuses:
+          -
+            title: You have have completed this service.
+            hint: You can edit it until the deadline
+      -
+        title: Make supplier declaration
+        link: '#nope'
+        body: Put yourself through the tender window
+        statuses:
+          -
+            type: angry
+            title: You must do this before any services can be submitted

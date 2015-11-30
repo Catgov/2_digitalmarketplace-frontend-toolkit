@@ -1,0 +1,61 @@
+@import "_colours.scss";
+@import "_digital-marketplace-colours.scss";
+@import "_typography.scss";
+
+%banner {
+  @include core-24;
+  padding: 20px;
+  margin-top: 15px;
+  border-width: 5px;
+  border-style: solid;
+}
+
+%banner-destructive {
+  @extend %banner;
+  color: $red;
+}
+
+.banner-destructive-without-action {
+  @extend %banner-destructive;
+}
+
+.banner-destructive-with-action {
+  @extend %banner-destructive;
+}
+
+%banner-warning {
+  @extend %banner;
+  color: $accessible-orange;
+}
+
+.banner-warning-with-action {
+  @extend %banner-warning;
+}
+
+.banner-warning-without-action {
+  @extend %banner-warning;
+}
+
+%banner-success {
+  @extend %banner;
+  color: $button-colour;
+}
+
+.banner-success-with-action {
+  @extend %banner-success;
+}
+
+.banner-success-without-action {
+  @extend %banner-success;
+}
+
+.banner-action {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.banner-message {
+  @include core-24;
+  font-weight: bold;
+  margin: 0;
+}

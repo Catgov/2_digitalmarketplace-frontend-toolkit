@@ -1,0 +1,36 @@
+pageTitle: Forms
+assetPath: ../govuk_template/assets/
+content: >
+  <main role="main" id="content" class="wrapper">
+    <div id="wrapper">
+      <header class="page-heading">
+        <h1>Forms</h1>
+      </header>
+      <ul class="index-list">
+        <li>
+          <a href="textbox.html">Textboxes</a>
+        </li>
+        <li>
+          <a href="selection-buttons.html">Selection buttons</a>
+        </li>
+        <li>
+          <a href="list-entry.html">List entry textbox</a>
+        </li>
+        <li>
+          <a href="option-select.html">Option select</a>
+        </li>
+        <li>
+          <a href="keyword-search.html">Keyword search</a>
+        </li>
+        <li>
+          <a href="validation.html">Validation</a>
+        </li>
+        <li>
+          <a href="upload.html">File upload</a>
+        </li>
+        <li>
+          <a href="pricing.html">Pricing</a>
+        </li>
+      </ul>
+    </div>
+  </main>
