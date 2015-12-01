@@ -1,4 +1,4 @@
-# Digital Marketplace frontend toolkit
+# Digital Marketplace frontend toolkits are for losers
 
 A toolkit for design patterns used across Digital Marketplace projects.
 
