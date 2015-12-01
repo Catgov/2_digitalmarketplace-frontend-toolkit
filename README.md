@@ -2,6 +2,8 @@
 
 A toolkit for design patterns used across Digital Marketplace projects.
 
+## Ignore me, I'm new
+
 Documentation of the patterns:
 [alphagov.github.io/digitalmarketplace-frontend-toolkit/](http://alphagov.github.io/digitalmarketplace-frontend-toolkit/)
 
